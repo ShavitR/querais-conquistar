@@ -1,44 +1,47 @@
 # Conquistar — free public beta
 
-Conquistar gives Codex a bounded TypeScript task, checks proposed changes, and leaves local installation in your hands.
+Give Codex a bounded TypeScript, Python or Rust task, check proposed changes, and review what gets installed.
 
-This repository distributes packaged releases, documentation and corresponding public dependency sources. Proprietary Conquistar source remains private. GitHub-generated “Source code” archives for this repository contain documentation, not the implementation.
+This repository distributes packaged releases, documentation and corresponding public dependency sources. Proprietary Conquistar source remains private. GitHub-generated source archives for this repository contain documentation, not the implementation.
 
-## Download
+## Install
 
-[Download the Windows installer](https://github.com/ShavitR/querais-conquistar/releases/download/v0.1.0-beta.3/Conquistar_0.1.0-beta.3_x64-setup.exe) · [Checksums](https://github.com/ShavitR/querais-conquistar/releases/download/v0.1.0-beta.3/SHA256SUMS.txt)
+[Install for Windows 11 x64](https://github.com/ShavitR/querais-conquistar/releases/download/v0.2.0-beta.1/Conquistar_0.2.0-beta.1_x64-setup.exe) · [Checksums](https://github.com/ShavitR/querais-conquistar/releases/download/v0.2.0-beta.1/SHA256SUMS.txt)
 
-Free beta setup **0.1.0-beta.3**, 130,176,437 bytes. Runtime **0.1.0-rc.1**, unchanged from beta.1. No payment details or Conquistar account. Your Codex/model and Docker Desktop terms and any applicable charges are separate.
+Free beta **0.2.0-beta.1**, 130,199,931 bytes. No payment details or Conquistar account. Model access and Docker Desktop terms and any applicable charges remain separate.
 
-Installer SHA-256: `25e6695a5c3a09ac619d22cecee0f6489e70921f3f58ae4a5331ba416f309ea4`
+Installer SHA-256: `92897ec3c241c5913b09333a8f3f7f36a8bb6c638ef4dfc7209f4410eae90940`
 
-[Corresponding third-party verifier sources](https://github.com/ShavitR/querais-conquistar/releases/download/v0.1.0-beta.3/conq-verifier-source-4c2f5097be1ee269.zip) are available at no charge beside this exact binary. Public Rust dependency sources and notices are included inside the installed runtime. Third-party licenses retain their own terms; proprietary Conquistar files are not open source. The NSIS setup engine is covered by NSIS-COPYING.txt in the installation folder.
+1. Install Docker Desktop with Linux containers, and Codex. Sign in to Codex using your own eligible access. Conquistar setup does not install prerequisites, start model calls, change PATH or request administrator access.
+2. Compare the download with SHA256SUMS.txt using `Get-FileHash -Algorithm SHA256 .\Conquistar_0.2.0-beta.1_x64-setup.exe`. Setup is unsigned; checksums confirm bytes, not publisher identity.
+3. Run setup, then open **Start > Conquistar > Conquistar**. Check or locate your tools, select TypeScript, Python or Rust, and choose **Prepare starter**. This explicit preparation downloads public verifier packages; Rust may require over 1 GB. Actual candidate checks run offline.
+4. Use **Open project folder** and **Copy first request**. Open that exact folder in Codex, accept its normal trust prompt, and paste the request. Preparation checks installed Codex tool discovery without starting a model request or changing global settings.
+5. Review the accepted change. From the runtime folder, explicitly run `conq.cmd native deliver "WORK-PATH"` and `conq.cmd native install "WORK-PATH"`. Workers cannot call install.
 
-## Install and start
+Tools and guides are in `%LOCALAPPDATA%\Programs\Conquistar\versions\0.2.0-beta.1`. [LANGUAGE-WORKFLOWS.md](LANGUAGE-WORKFLOWS.md) explains existing-project admission, exact byte edits and supported interfaces. The original small TypeScript workflow remains available through `conq.cmd onboard` and `conq.cmd work`. Keep extra files outside the runtime, except private mutable state under `.conq`.
 
-1. Use Windows 11 x64. The workflow needs Docker Desktop running Linux containers, and Codex installed, signed in and eligible for your chosen model. Setup does not install these prerequisites or start model calls.
-2. Compare the installer's SHA-256 with SHA256SUMS.txt using `Get-FileHash -Algorithm SHA256 .\Conquistar_0.1.0-beta.3_x64-setup.exe`. Setup is unsigned; the checksum confirms bytes, not a publisher signature.
-3. Run setup. It installs for your own Windows account in `%LOCALAPPDATA%\Programs\Conquistar`, without administrator access or PATH changes.
-4. Open **Start > Conquistar > Conquistar**. The native get-started window checks Docker and Codex separately. Install or start missing tools, then choose Check again. Use Choose Codex.exe if needed. Choose Prepare starter, then use Open project folder and Copy first request to continue in Codex.
-5. Open the exact starter project printed by onboarding in Codex, complete its trust prompt and use the printed first request.
-6. Review the accepted change. Installation of a code change is explicit: `conq.cmd work install "WORK-PATH"` from the runtime folder, using the actual printed path.
+## Scope
 
-The setup guide is also in the Start Menu. Tools and detailed documentation are in `versions\0.1.0-rc.1`. Keep added files and source downloads outside that runtime folder: its integrity check refuses extra files outside `.conq`. Older commercial-candidate statements in bundled documentation are superseded by this free beta release and BETA-LICENSE.txt.
+TypeScript JSON functions with fixed strict compiler settings, Python synchronous standard-library JSON functions (including explicit package modules), and dependency-free Rust `pub fn(i64) -> i64`. No Cargo/pip/npm dependency setup, whole-app verification, deployment, atomic multi-file installation or economic savings are promised. Checks cover the finite cases supplied by the operator. Review changes and keep backups.
 
-## Reinstall, update and uninstall
+Version 2 range edits bind exact candidates, whole-file hashes and old byte-range hashes. Engineering ceilings are 8 MiB per file, 64 MiB aggregate and 4,096 admitted files. The boundary control uses comment padding; it does not establish compiler performance on arbitrary large ASTs. Installation atomically replaces one accepted writable file and refuses conflicting local edits or stale/revoked evidence.
 
-Running setup again verifies and reuses a healthy runtime without overwriting saved work. It preserves and refuses a changed or incomplete runtime; move the complete folder somewhere safe before retrying. Future runtime versions use separate folders to preserve absolute Codex connection paths. There is no automatic updater or migration. Existing [portable beta.1 installations](https://github.com/ShavitR/querais-conquistar/releases/tag/v0.1.0-beta.1) remain untouched; keep their original paths for existing work.
+## Reinstall and uninstall
 
-Uninstall through Windows Settings > Apps > Installed apps, or Start > Conquistar > Uninstall. Clean, unused runtime files are removed. A runtime containing `.conq` work is kept in full for existing connections. Changed and unexpected files are also retained. Review retained work and disconnect its Codex connections before manually deleting its runtime folder. External projects and Docker images are not removed. Cleanup details are in `%LOCALAPPDATA%\Conquistar\uninstall.log`.
+Setup reuses a healthy same-version runtime and preserves saved work. It refuses to overwrite modified/incomplete runtimes. New versions live side by side so older Codex connections keep their paths. There is no automatic updater or migration.
 
-## Scope and checks
+Uninstall through Windows Settings or the Start Menu. A runtime containing `.conq` work is retained in full. Changed and unexpected files, external projects and Docker images are preserved. Review retained work and disconnect its Codex connections before removing a runtime manually. Cleanup details: `%LOCALAPPDATA%\Conquistar\uninstall.log`.
 
-Selected existing TypeScript modules, explicit finite behavior cases and local installation of one accepted file. No whole-application correctness, atomic multi-file installation, deployment or economic savings are promised. Review changes and keep backups.
+## Verification and sources
 
-Setup was checked offline in a clean Windows 11 guest under a non-administrator account: installation, package startup, missing-prerequisite guidance, shortcuts, registration, same-version reinstall, changed-runtime refusal, uninstall and work preservation passed. A previous-version fixture's paths survived setup and uninstall. The native first-run controls were exercised and rendered off-screen in that guest. An actual beta.2-to-beta.3 setup upgrade preserved saved work. This is not a second-runtime upgrade or an interactive wizard test. The same bridge prepared a real starter and confirmed installed Codex tool discovery on the original host with no model request or global configuration change. The unchanged runtime also has source/build checks and actual Docker workflow/boundary checks. Full Docker/Codex desktop integration in an independent clean guest remains unobserved.
+317 integration tests, additional range/native installation checks and a real Docker language/size matrix passed. The packaged runtime passed real Codex discovery and MCP repair → verification → delivery → explicit installation → replay in all three languages, with zero model calls. Revocation, receipt/blob corruption, concurrent edits and process crashes before/after replacement were checked.
+
+This installer passed 45 offline clean-user Windows guest checks, including actual beta.3 upgrade across runtime folders, work preservation, reinstall/refusal/uninstall, missing prerequisites, the three-language selector and small-screen scrolling. Native controls were exercised off-screen in the disposable guest. Host checks used already installed Docker/Codex; full prerequisite installation and desktop interaction on a separate clean machine remain unobserved.
+
+[Corresponding bundled verifier sources](https://github.com/ShavitR/querais-conquistar/releases/download/v0.2.0-beta.1/conq-verifier-source-4c2f5097be1ee269.zip) are supplied at no charge. The embedded native binaries, Python and bundled TypeScript image are unchanged from the qualified base. Exact public Rust dependency sources/notices are inside the runtime. Optional language toolchains are built locally from pinned public bases using a generated-Dockerfile-only context; no private project source enters image layers. Upstream licenses retain their terms. NSIS engine notices are in NSIS-COPYING.txt.
 
 ## License and support
 
-[BETA-LICENSE.txt](BETA-LICENSE.txt) grants no-charge use of this delivered beta, including your own commercial work, with no automatic paid conversion.
+[BETA-LICENSE.txt](BETA-LICENSE.txt) grants no-charge use of this delivered beta, including your own commercial work, with no expiry or automatic paid conversion.
 
-Support: contact@querais.xyz. Include the version and a redacted description; do not send credentials or private task stores. No response-time commitment.
+Support: contact@querais.xyz. Include the version and a redacted description; do not send credentials or private Work stores. No response-time commitment.
