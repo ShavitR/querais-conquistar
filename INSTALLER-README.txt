@@ -1,8 +1,8 @@
-Conquistar - free public beta 0.3.0-beta.1
-Runtime build: 0.3.0-beta.1
+Conquistar - free public beta 0.4.0-beta.1
+Runtime build: 0.4.0-beta.1
 
 INSTALL
-Run Conquistar_0.3.0-beta.1_x64-setup.exe on Windows 11 x64.
+Run Conquistar_0.4.0-beta.1_x64-setup.exe on Windows 11 x64.
 Setup installs for your Windows account without administrator access in:
 %LOCALAPPDATA%\Programs\Conquistar
 Open Start > Conquistar > Conquistar for the get-started window.
@@ -25,7 +25,7 @@ USING THE BETA
 Open the exact starter project printed by first run in Codex, complete its
 trust prompt, and use the printed first request. Review the accepted change.
 Installing a proposed code change is explicit; setup does not approve changes.
-Tools and detailed documentation live in versions\0.3.0-beta.1.
+Tools and detailed documentation live in versions\0.4.0-beta.1.
 The get-started window lets you choose a short local starter folder, defaulting to
 %LOCALAPPDATA%\Conquistar\Starters\start-LANGUAGE. Keep that folder private.
 LANGUAGE-WORKFLOWS.md explains existing-project admission and range edits.
@@ -49,15 +49,19 @@ Review retained work and disconnect its Codex connections before manually deleti
 its complete runtime folder. Cleanup details: %LOCALAPPDATA%\Conquistar\uninstall.log.
 
 SCOPE / SOURCES
-Bounded TypeScript JSON functions (range edits up to the 8 MiB file ceiling),
-async TypeScript/JavaScript/Python JSON functions, standard-library Go packages,
-and dependency-free Rust i64 functions/Cargo libraries with explicit finite
-behavior cases. No remote project dependency setup or whole-project verification. Local installation changes one accepted file.
+Bounded TypeScript/JavaScript/Python JSON functions, Go packages and Rust i64
+functions/Cargo libraries with finite operator cases. DEPENDENCIES.md explains
+explicit locked public dependency preparation. This networked preparation uses
+metadata only; candidate checks remain offline. Metadata stays read-only.
+MULTI-FILE-INSTALL.md explains sequential replacement of 2-64 existing admitted
+files, conditional live rollback and read-only crash reconciliation. Mixed or
+conflicted crash states require manual recovery; no filesystem-wide atomicity,
+file creation/deletion/rename, whole-app correctness or power-loss guarantee.
 The original small TypeScript workflow remains available via conq onboard.
 No whole-app correctness or
 economic savings are promised. Review changes and keep backups.
 Corresponding third-party verifier sources and checksums:
-https://github.com/ShavitR/querais-conquistar/releases/tag/v0.3.0-beta.1
+https://github.com/ShavitR/querais-conquistar/releases/tag/v0.4.0-beta.1
 The runtime is proprietary; third-party licenses retain their own terms.
 NSIS setup engine: https://nsis.sourceforge.io/ (see NSIS-COPYING.txt).
 Support: contact@querais.xyz. Include the version and a redacted description;

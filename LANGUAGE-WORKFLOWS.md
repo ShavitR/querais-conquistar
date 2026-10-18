@@ -1,5 +1,8 @@
 # TypeScript, JavaScript, Python, Rust and Go beta workflows
 
+For explicitly prepared public locks, see [the dependency beta contract](DEPENDENCIES.md).
+The dependency-free defaults below remain available.
+
 Open Conquistar, select a language and choose **Prepare starter**. Each language
 gets a separate isolated starter. Preparation downloads public Docker toolchain
 packages and may require more than 1 GB for Rust or Go. Docker Desktop must be running
@@ -99,16 +102,41 @@ conq native install C:\Conq\work
 
 Delivery produces a small JSON manifest and exact hash-named source blobs under
 the Work's `delivery` folder. Keep the manifest with its `blobs` directory.
-Installation requires current acceptance and an unchanged admitted checkout;
-it atomically replaces exactly one admitted writable file. Workers cannot call
-install. Concurrent edits, revoked/expired authority, altered receipts and
-ambiguous interrupted effects are refused. A second successful install reports
-a replay without writing again. Multi-file transactional installation is not
-implemented. Preserve the original package and Work together for recovery.
+Installation requires current acceptance and an unchanged admitted checkout.
+It stages replacements for existing admitted writable files before changing the
+checkout, then replaces files sequentially with fresh acceptance and conflict
+checks. Workers cannot call install. Concurrent edits, revoked/expired authority,
+altered receipts and ambiguous interrupted effects are refused. A second successful
+install reports a replay without writing again. This is not a filesystem-wide
+atomic transaction; preserve the original package and Work together for recovery.
+
+Read [MULTI-FILE-INSTALL.md](MULTI-FILE-INSTALL.md), installed beside this guide
+in the runtime folder, for the full recovery contract. If installation is
+interrupted, inspect before attempting recovery:
+
+```text
+conq native install-status C:\Conq\work
+conq native install-reconcile C:\Conq\work
+```
+
+Status checks exact checkout and recovery-artifact hashes. Reconcile never writes
+the checkout: it can settle an exact completed result or exact restored baseline.
+A mixed or externally changed checkout stays pending and blocks further installs.
+Preserved per-file original blobs support deliberate manual restoration; never
+copy them over unrelated edits. Conditional rollback is limited to the original
+live attempt with current authority and acceptance. Recovery does not replay a
+mutation under an old authority debit.
+An operation settled as FailedSettled is consumed: invoking install for that same
+candidate and decision only replays its outcome. After restoring the exact
+baseline, admit a new Work for another attempt. An already terminal Indeterminate
+outcome cannot be rewritten by reconcile.
 
 Optional toolchains derive from digest-pinned public official Python/Rust/Go images
 or the exact bundled public TypeScript image. Only a generated Dockerfile enters
-their build contexts. Project/private repository bytes never enter image layers.
+their build contexts. These base toolchain builds contain no project bytes.
+Explicit dependency preparation additionally copies selected lock metadata and
+receiver-generated placeholders into customer-local image contexts. Keep those
+images private; see [DEPENDENCIES.md](DEPENDENCIES.md).
 Public image references: https://hub.docker.com/_/python and
 https://hub.docker.com/_/rust and https://hub.docker.com/_/golang . Build logs and exact image IDs remain locally in
 `.conq/toolchains`. Checks use the admitted local image with `--pull=never`.
