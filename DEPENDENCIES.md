@@ -1,5 +1,37 @@
 # Public locked dependency beta
 
+## Declared local graphs in 0.5
+
+Schema 3 can bind explicit local package members in addition to public packages.
+Repeat `--member packages/NAME` during dependency preparation; repeat
+`--member path:package-name:relative-source-entry` during native admission. Only
+selected root/member metadata enters preparation. Source files remain outside the
+networked context. Inspect selected metadata for identifiers, script text and
+secrets before preparing a customer-local image.
+
+npm graphs require a private root, an exact explicit workspace list and v3 lock.
+Local dependencies use the exact declared member version or `*`. Validated local
+links are removed before the regular public-artifact inventory and recreated only
+inside the confined offline source build. General exports/imports, lifecycle
+scripts, arbitrary user configuration and build plugins are outside this contract.
+TypeScript uses one fixed strict CommonJS source build, not general `tsc -b` or
+project-reference semantics.
+
+Cargo graphs use a virtual workspace with resolver 2/3, explicit ordinary library
+members, concrete manifests/root lock and confined local path dependencies. Build
+scripts and procedural macros remain refused. Go supports selected subpackages
+inside one root module, without cgo or external path replacement. Python uses
+explicit nonambiguous source roots; it does not install local editable packages or
+execute build backends. The language guide contains concrete admission commands.
+
+Preparation records bind their helper implementation fingerprint. Keep existing
+0.4 Work, records and runtime together; installing 0.5 does not migrate them or
+establish fresh acceptance. For new 0.5 admission, explicitly reprepare under the
+new runtime after selecting its metadata and graph. Do not edit record hashes or
+reuse historical acceptance to bypass the new binding.
+
+## Original public-lock contract
+
 Prepare a language toolchain first. Dependency preparation is an explicit
 networked operation producing a customer-local Docker image. Only selected
 metadata and receiver-generated placeholders enter its context. Selected metadata
@@ -20,8 +52,10 @@ Use the returned dependency image, preparation record and every metadata file:
 conq native init-language C:\Conq\work --language typescript --source C:\MyProject --file component.ts --file helper.ts --file package.json --file package-lock.json --entry component.ts --function normalize --cases C:\Conq\cases.json --image sha256:EXACT_DEPENDENCY_IMAGE --dependencies C:\Conq\dependencies.json --writable component.ts --writable helper.ts --intent "Normalize selected inputs."
 ```
 
-Without `--writable`, only the entry is writable. Repeated selections must
-contain the entry and only admitted source files; metadata and generated drivers
+With repeated `--file` flags, omitting `--writable` makes only the entry writable;
+repeated writable flags must include the entry and only admitted source files.
+A schema 3 `--selection PATH` can instead select only writable helpers, leaving
+the entry read-only. In every form, metadata and generated drivers
 remain read-only. Reprepare after changing a lock or dependency declaration.
 A record for different metadata, implementation, language or image is refused.
 Foreign project/package-manager configuration is never imported.

@@ -1,8 +1,8 @@
-Conquistar - free public beta 0.4.0-beta.1
-Runtime build: 0.4.0-beta.1
+Conquistar - free public beta 0.5.0-beta.1
+Runtime build: 0.5.0-beta.1
 
 INSTALL
-Run Conquistar_0.4.0-beta.1_x64-setup.exe on Windows 11 x64.
+Run Conquistar_0.5.0-beta.1_x64-setup.exe on Windows 11 x64.
 Setup installs for your Windows account without administrator access in:
 %LOCALAPPDATA%\Programs\Conquistar
 Open Start > Conquistar > Conquistar for the get-started window.
@@ -25,7 +25,7 @@ USING THE BETA
 Open the exact starter project printed by first run in Codex, complete its
 trust prompt, and use the printed first request. Review the accepted change.
 Installing a proposed code change is explicit; setup does not approve changes.
-Tools and detailed documentation live in versions\0.4.0-beta.1.
+Tools and detailed documentation live in versions\0.5.0-beta.1.
 The get-started window lets you choose a short local starter folder, defaulting to
 %LOCALAPPDATA%\Conquistar\Starters\start-LANGUAGE. Keep that folder private.
 LANGUAGE-WORKFLOWS.md explains existing-project admission and range edits.
@@ -53,15 +53,23 @@ Bounded TypeScript/JavaScript/Python JSON functions, Go packages and Rust i64
 functions/Cargo libraries with finite operator cases. DEPENDENCIES.md explains
 explicit locked public dependency preparation. This networked preparation uses
 metadata only; candidate checks remain offline. Metadata stays read-only.
-MULTI-FILE-INSTALL.md explains sequential replacement of 2-64 existing admitted
+Schema 3 admits explicit local package graphs and exact source-file create/edit/
+delete grants. Creation requires an absent target and existing ordinary parents.
+The get-started window still prepares small language starters; use the documented
+CLI for existing projects. Manifest pages are candidate-bound; limits remain
+8 MiB/file, 64 MiB source, at most 8192 paths and 900000 serialized manifest/profile
+bytes. Long paths can reach the byte bound sooner. Keep old Work on its original
+runtime; new 0.5 admission needs fresh verification and explicit re-preparation of
+dependency records under the new helper fingerprint.
+MULTI-FILE-INSTALL.md explains sequential installation of 1-64 explicitly granted
 files, conditional live rollback and read-only crash reconciliation. Mixed or
 conflicted crash states require manual recovery; no filesystem-wide atomicity,
-file creation/deletion/rename, whole-app correctness or power-loss guarantee.
+directory creation/rename, whole-app correctness or power-loss guarantee.
 The original small TypeScript workflow remains available via conq onboard.
 No whole-app correctness or
 economic savings are promised. Review changes and keep backups.
 Corresponding third-party verifier sources and checksums:
-https://github.com/ShavitR/querais-conquistar/releases/tag/v0.4.0-beta.1
+https://github.com/ShavitR/querais-conquistar/releases/tag/v0.5.0-beta.1
 The runtime is proprietary; third-party licenses retain their own terms.
 NSIS setup engine: https://nsis.sourceforge.io/ (see NSIS-COPYING.txt).
 Support: contact@querais.xyz. Include the version and a redacted description;
